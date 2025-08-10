@@ -137,6 +137,42 @@
 .credit a:hover {
   text-decoration: underline;
 }
+
+/* Make the two controls the same height & aligned */
+.controls{
+  display:grid;
+  grid-template-columns: 1fr 220px;   /* search grows, select fixed */
+  gap:12px;
+  align-items:center;                 /* vertical align */
+}
+
+/* Base look shared by both */
+input[type="search"], select{
+  box-sizing:border-box;
+  height:56px;                        /* <-- force same height */
+  padding:0 16px;
+  font-size:18px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#f6f7fe;
+  color:var(--text);
+  outline:none;
+  line-height:56px;                   /* helps on Safari */
+}
+
+/* Normalize select on iOS/Safari */
+select{
+  -webkit-appearance:none;
+  appearance:none;
+  padding-right:44px;                 /* space for the chevron */
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7l5 6 5-6' fill='none' stroke='%236f6ce8' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position: right 12px center;
+  background-size:16px;
+}
+
+/* iOS text-resize quirks */
+html{ -webkit-text-size-adjust:100%; }
   </style>
 </head>
 <body>
