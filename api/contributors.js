@@ -1,17 +1,24 @@
-// /api/contributors.js
-export default async function handler(req, res) {
-  const SHEET_JSON_URL = process.env.SHEET_JSON_URL; // set on Vercel
-  if (!SHEET_JSON_URL) {
-    return res.status(500).json({ error: "SHEET_JSON_URL env var not set" });
-  }
+const fetch = require('node-fetch');
+
+module.exports = async (req, res) => {
   try {
-    const r = await fetch(SHEET_JSON_URL, { cache: "no-store" });
-    if (!r.ok) throw new Error(`Upstream ${r.status}`);
-    const data = await r.json();
-    // Cache 5m at the edge; keep serving while revalidating for 1 day
-    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=86400");
+    const sheetUrl = process.env.SHEET_JSON_URL;
+
+    if (!sheetUrl) {
+      return res.status(500).json({ error: 'Missing SHEET_JSON_URL environment variable' });
+    }
+
+    const response = await fetch(sheetUrl);
+    if (!response.ok) {
+      throw new Error(`Google Sheet fetch failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Optional: filter or process data here
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
     res.status(200).json(data);
-  } catch (e) {
-    res.status(200).json([]); // fail-soft so site still loads
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-}
+};
