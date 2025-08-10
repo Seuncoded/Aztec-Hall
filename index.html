@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aztec Hall — Community Shout‑outs</title>
+  <link rel="icon" type="image/svg+xml"
+  href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%236f6ce8"/><rect x="18" y="18" width="28" height="28" rx="6" fill="%23ffffff"/></svg>'>
+  <meta name="description" content="Community shout‑outs and roles for the Aztec ecosystem." />
+  <style>
+    .notice {
+  max-width:1280px; margin:10px auto 0; padding:0 18px 18px;
+}
+.notice .board {
+  background:#ffffff; border:1px solid var(--border);
+  border-radius:14px; box-shadow:var(--shadow);
+  padding:16px 16px 14px;
+}
+.notice h3 {
+  margin:0 0 8px 0; font-size:50px; color:var(--accent-ink);
+  letter-spacing:.2px; font-weight:900;
+}
+.notice p { margin:6px 0 10px; color:var(--muted); font-size:20px; font-weight: 600; }
+.notice ul {
+  margin:0; padding-left:18px; line-height:1.6; color:var(--text);
+  font-size:20px;
+}
+    :root{
+      --bg:#ffffff; --text:#121428; --muted:#5b6691; --border:#e8eaf4; --shadow:0 8px 24px rgba(18,26,66,.10);
+      --panel:#ffffff; --chip:#eef1fb; --accent:#6f6ce8; --accent-ink:#4b49b8;
+
+      /* Role colors (you can tweak later) */
+      --role-Homestaker-Sentinel:#a17600;
+      --role-High-Attester:#a3e635;
+      --role-Proposal-Commander:#214168;
+      --role-Meme-Lord:#a78bfa;
+      --role-Content-Chronicler:#22c55e;
+      --role-Queue-Master:#f97316;
+      --role-The-Paragon:#f472b6;
+      --role-The-Archivist:#06b6d4;
+      --role-Maestro:#a401b6;
+      --role-Explorer:#e40000;
+      --role-Initiated:#c084fc;
+      --role-Tester:#fb923c;
+      --role-Town-Hall-Warrior:#64748b;
+      --role-Defender:#007512;
+      --role-Developer:#1d4ed8;
+
+      --role-1:#6d28d9; --role-2:#0891b2; --role-3:#16a34a; --role-4:#f59e0b; --role-5:#ef4444; --role-6:#9333ea;
+    }
+
+    html,body{height:100%;}
+    body{margin:0; color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background:var(--bg)}
+
+    .bar{position:sticky; top:0; z-index:10; backdrop-filter: blur(6px); background:rgba(255, 255, 255, 0.9); border-bottom:1px solid var(--border)}
+    .bar .wrap{display:flex; align-items:center; gap:14px; padding:18px 18px; max-width:1280px; margin:0 auto}
+    .brand{width:100px; height:100px; border-radius:12px; display:grid; place-items:center; background:var(--accent); box-shadow:inset 0 0 0 2px #fff8}
+    .brand svg{width:80%; height:80%}
+    .title{font-weight:900; letter-spacing:.2px; color:var(--accent-ink); font-size:100px; line-height:1}
+    .muted{color:var(--muted); font-size:50px}
+
+    .main{max-width:1280px; margin:0 auto; padding:20px 18px 56px}
+
+    .controls{display:grid; grid-template-columns: 1fr auto; gap:12px; margin: 8px 0 18px}
+    .field{display:grid; gap:6px}
+    label{font-size:30px; color: #6d28d9; font-weight: 900;}
+    input[type="search"], select{ background:#f6f7fe; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:12px 12px; outline:none; font-size:25px }
+
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+    @media (min-width: 1280px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
+
+    .card{
+      min-height:260px; max-height:550px; position:relative; border-radius:16px; overflow:hidden;
+      border:1px solid var(--border); background:var(--panel); box-shadow:var(--shadow);
+      display:grid; grid-template-rows:300px auto; transition: transform .16s ease, box-shadow .16s ease
+    }
+    .card:hover{ transform: translateY(-4px) scale(1.015); box-shadow:0 14px 36px rgba(18,26,66,.16) }
+
+    .pfpWrap{ grid-row:1; background:#fff; border-bottom:1px solid var(--border) }
+    .pfp{ width:100%; height:100%; overflow:hidden }
+    .pfp img{ width:100%; height:100%; object-fit:cover; display:block }
+    .pfp .init{ display:grid; place-items:center; width:100%; height:100%; font-weight:900; font-size:1.8rem; color:var(--accent-ink); background:#e9eafe }
+
+    .body{ grid-row:2; padding:12px 12px 14px; display:flex; flex-direction:column }
+    .topRow{display:flex; align-items:center; gap:8px; justify-content:space-between}
+    .rank{display:inline-flex; align-items:center; justify-content:center; min-width:36px; height:28px; padding:0 8px; font-weight:900; border-radius:999px; background:#eef1ff; color:#2b2f6f; border:1px solid var(--border); font-size:16px}
+    .name{ font-weight:900; display:flex; gap:6px; align-items:center; font-size:23px; color:#0f1330 }
+    .handle{ font-size:10px; color:var(--muted) }
+
+    .roles{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
+    .role{ color:#0b1028; font-weight:800; padding:6px 8px; border-radius:999px; font-size:18px; border:1px solid var(--border); background:var(--chip); box-shadow: inset 0 -2px 4px rgba(0,0,0,.04) }
+
+    .empty{ color:var(--muted); text-align:center; padding:18px; font-size:.95rem }
+
+    /* Skeletons */
+    .skeleton{ border-radius:16px; border:1px solid var(--border); background:#fff; box-shadow:var(--shadow); overflow:hidden; }
+    .sk-img{ height:300px; background:linear-gradient(90deg,#f5f6fb 25%,#eceef7 37%,#f5f6fb 63%); background-size:400% 100%; animation: shimmer 1.2s infinite }
+    .sk-body{ padding:12px }
+    .sk-line{ height:14px; border-radius:6px; margin:8px 0; background:linear-gradient(90deg,#f5f6fb 25%,#eceef7 37%,#f5f6fb 63%); background-size:400% 100%; animation: shimmer 1.2s infinite }
+    @keyframes shimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+    .credit {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-ink);
+  box-shadow: var(--shadow);
+}
+.credit a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.credit a:hover {
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="wrap">
+      <div class="brand" title="Aztec">
+        <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <rect width="100" height="100" rx="22" fill="#ffffff"/>
+          <rect x="20" y="20" width="60" height="60" rx="12" fill="#6f6ce8"/>
+          <rect x="35" y="35" width="30" height="30" rx="8" fill="#ffffff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="title">Aztec Hall</div>
+        <div class="muted">Community shout‑outs and roles</div>
+      </div>
+      <div style="flex:1"></div>
+    </div>
+  </header>
+<section class="notice">
+  <div class="board">
+    <h3>Notice board</h3>
+    <p>To be listed here, you must have at least one of these roles:</p>
+    <ul>
+      <li>Homestaker Sentinel</li>
+      <li>High Attester</li>
+      <li>Proposer commander</li>
+      <li>Content chronicler</li>
+      <li>Queue Master</li>
+      <li>Maestro</li>
+      <li>The Paragon</li>
+      <li>The Archivist</li>
+    </ul>
+  </div>
+</section>
+  <main class="main">
+    <section class="controls">
+      <div class="field">
+        <label for="q">Search</label>
+        <input id="q" type="search" placeholder="Search name or handle…" />
+      </div>
+      <div class="field">
+        <label for="roleSel">Filter by role</label>
+        <select id="roleSel"><option value="">All roles</option></select>
+      </div>
+    </section>
+
+    <section id="cards" class="grid"></section>
+  </main>
+
+  <div class="credit">Built by <a href="https://x.com/seuncoded" target="_blank" rel="noopener">@seuncoded</a></div>
+
+  <script>
+    function rebuildRoleFilterFromVisible(){
+  const roleSel = document.querySelector('#roleSel');
+  const prev = roleSel.value;
+
+  // Collect only roles that appear in the already-filtered (visible) list
+  const visibleRoles = Array.from(new Set(
+    state.filtered.flatMap(x => x.roles || [])
+  )).sort((a,b)=>a.localeCompare(b));
+
+  roleSel.innerHTML = '<option value="">All roles</option>' +
+    visibleRoles.map(r=>`<option value="${r}">${r}</option>`).join('');
+
+  // Keep the previous selection if it still exists; otherwise reset
+  if (prev && visibleRoles.includes(prev)) {
+    roleSel.value = prev;
+  } else {
+    state.role = '';
+  }
+}
+    // Only show users who have at least one of these roles:
+const REQUIRED_ROLES = new Set([
+  'Homestaker Sentinel',
+  'High Attester',
+  'Proposer commander',     // exact spelling from your notice
+  'Content Chronicler',     // exact spelling from your notice
+  'Queue Master',
+  'Maestro',
+  'The Paragon',
+  'The Archivist',
+]);
+    const SHEET_JSON_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhUaagfckU5EY06gOWlMtrOxN0YE9i5UR9cLCrdFD0CFmhI7hmMKaw9liDmiWCYXZRLaI4J-WNcinmeMqb0b-61ti2FFT2D4SKbKLhfgeOhstt1cmI4qncEVq9XUgJihONg6PPZUht3Nuy25j_ln4PbdaY5c8-sqW7X5S0fauIfcpxou13f-XjT_etQcY2UvZMxq5mRnRhSRJJFtfdjcXSYYFbKNXxbAPBOFCPy-ZcMJJu-0icqWOCsO_kwOnCfr8SXm5L5y2w4o__wIZdX6vAFmfDLPHDc6qM3c5N5&lib=MmoffGhvRFJSfNRmoE_Umb04A79LrDTNZ";
+  const API_URL =
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    ? SHEET_JSON_URL          // use Google Sheet when testing locally
+    : "/api/contributors";    // use Vercel proxy in production
+
+    const el = sel => document.querySelector(sel);
+    const state = { all: [], filtered: [], search:'', role:'' };
+
+    // --- Skeletons ---
+    function renderSkeletons(n=8){
+      const card = () => `
+        <div class="skeleton">
+          <div class="sk-img"></div>
+          <div class="sk-body">
+            <div class="sk-line" style="width:70%"></div>
+            <div class="sk-line" style="width:40%"></div>
+            <div class="sk-line" style="width:90%"></div>
+          </div>
+        </div>`;
+      el('#cards').innerHTML = Array.from({length:n}, card).join('');
+    }
+
+    // --- Data loader (from Vercel API) ---
+    async function loadData(){
+      const res = await fetch(API_URL, { cache:'no-store' });
+      if(!res.ok) throw new Error('Failed to load /api/contributors');
+      const raw = await res.json();
+      // Normalize roles (array OR pipe string) + keep all roles visible
+      return (Array.isArray(raw)?raw:[]).map(item=>{
+        const roles = Array.isArray(item.roles)
+          ? item.roles
+          : String(item.roles||'').split('|').map(s=>s.trim()).filter(Boolean);
+        return {
+          id: item.id || '',
+          name: item.name || '',
+          handle: item.handle || '',
+          twitterUrl: item.twitterUrl || '',
+          pfp: item.pfp || item.localPfp || '',
+          roles
+        };
+      });
+    }
+
+    // --- Role colors ---
+   const css = getComputedStyle(document.documentElement);
+const colorMap = new Map([
+  ['Homestaker Sentinel', css.getPropertyValue('--role-Homestaker-Sentinel')],
+
+  ['High Attester',       css.getPropertyValue('--role-High-Attester')],
+
+  // Both spellings mapped to the same color variable
+  ['Proposal Commander',  css.getPropertyValue('--role-Proposal-Commander')],
+  ['Proposer commander',  css.getPropertyValue('--role-Proposal-Commander')],
+
+  ['Meme Lord',           css.getPropertyValue('--role-Meme-Lord')],
+
+  // Both casings for “Content Chronicler”
+  ['Content Chronicler',  css.getPropertyValue('--role-Content-Chronicler')],
+  ['Content chronicler',  css.getPropertyValue('--role-Content-Chronicler')],
+
+  ['Queue Master',        css.getPropertyValue('--role-Queue-Master')],
+  ['The Paragon',         css.getPropertyValue('--role-The-Paragon')],
+  ['The Archivist',       css.getPropertyValue('--role-The-Archivist')],
+  ['Maestro',             css.getPropertyValue('--role-Maestro')],
+  ['Explorer',            css.getPropertyValue('--role-Explorer')],
+  ['Initiated',           css.getPropertyValue('--role-Initiated')],
+  // Your variable name is --role-Tester, so map both keys to it:
+  ['Tester',              css.getPropertyValue('--role-Tester')],
+  ['Tester Role',         css.getPropertyValue('--role-Tester')],
+  // Both casings for Town Hall Warrior:
+  ['Town Hall Warrior',   css.getPropertyValue('--role-Town-Hall-Warrior')],
+  ['Town hall Warrior',   css.getPropertyValue('--role-Town-Hall-Warrior')],
+  ['Defender',            css.getPropertyValue('--role-Defender')],
+  ['Developer',           css.getPropertyValue('--role-Developer')],
+]);
+    const fallback = ['--role-1','--role-2','--role-3','--role-4','--role-5','--role-6'].map(v=>css.getPropertyValue(v));
+
+    const pill = (role,i)=>{
+      const col = (colorMap.get(role) || fallback[i%fallback.length]).trim() || '#e5e7eb';
+      const style = `background:${col}2a; border-color:${col}90; color:#111827;`;
+      return `<span class="role" style="${style}">${escapeHtml(role)}</span>`;
+    };
+
+function applyFiltersAndRank(){
+  const q = state.search.toLowerCase();
+
+  // Start with all people and keep their roles array intact
+  let arr = state.all.map(p => ({ ...p, roles: (p.roles || []) }));
+
+  // ✅ Only keep users who have at least one required role
+  arr = arr.filter(p => (p.roles || []).some(r => REQUIRED_ROLES.has(r)));
+
+  // Search filter
+  if(q){
+    arr = arr.filter(x =>
+      (x.name || '').toLowerCase().includes(q) ||
+      (x.handle || '').toLowerCase().includes(q)
+    );
+  }
+
+  // Role dropdown filter
+  if(state.role){
+    arr = arr.filter(x => (x.roles || []).includes(state.role));
+  }
+
+  // Rank by number of roles (desc), tie-breaker = name
+  arr.sort((a,b)=>{
+    const da = (a.roles||[]).length, db = (b.roles||[]).length;
+    return db - da || (a.name||'').localeCompare(b.name||'');
+  });
+
+  // Stable “1,1,3,…” ranks
+  let lastCount = null, lastRank = 0;
+  arr.forEach((p, idx) => {
+    const rc = (p.roles||[]).length;
+    if(rc !== lastCount){ lastRank = idx + 1; lastCount = rc; }
+    p.rank = lastRank;
+    p.roleCount = rc;
+  });
+
+  state.filtered = arr;
+}
+
+    function avatarHtml(p){
+      const letter = (p.name||p.id||'?').trim()[0]?.toUpperCase() || '?';
+      const img = p.pfp ? `<img src="${p.pfp}" alt="${escapeHtml(p.name||'')}" loading="lazy">`
+                        : `<div class="init">${letter}</div>`;
+      return `<div class="pfp">${img}</div>`;
+    }
+
+    function cardHtml(p){
+      const roles = (p.roles||[]).map((r,i)=> pill(r,i)).join('');
+      const hrefAttr = p.twitterUrl ? ` data-href="${p.twitterUrl}"` : '';
+      return `
+        <article class="card"${hrefAttr} data-id="${escapeHtml(p.id)}">
+          <div class="pfpWrap">${avatarHtml(p)}</div>
+          <div class="body">
+            <div class="topRow">
+              <div class="name">${escapeHtml(p.name||'')} <span class="handle">${escapeHtml(p.handle||'')}</span></div>
+              <span class="rank">#${p.rank}</span>
+            </div>
+            <div class="roles">${roles}</div>
+       
+          </div>
+        </article>`;
+    }
+
+function render(){
+  applyFiltersAndRank();
+  const box = el('#cards');
+
+  if(!state.filtered.length){
+    box.innerHTML = `<div class="empty">No matches. Try clearing filters.</div>`;
+    rebuildRoleFilterFromVisible(); // update dropdown to reflect current (empty) view
+    return;
+  }
+
+  box.innerHTML = state.filtered.map(cardHtml).join('');
+  rebuildRoleFilterFromVisible(); // update dropdown to reflect roles currently visible
+}
+
+    // whole-card click
+    document.addEventListener('click', (e)=>{
+      const card = e.target.closest('.card[data-href]');
+      if(!card) return;
+      const url = card.getAttribute('data-href');
+      if(url) window.open(url, '_blank', 'noopener');
+    });
+
+    function escapeHtml(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+
+    // search + role filter
+    el('#q').addEventListener('input', (e)=>{ state.search = e.target.value; render(); });
+
+    function buildFilters(data){
+      const roles = Array.from(new Set(data.flatMap(x => x.roles||[]))).sort((a,b)=>a.localeCompare(b));
+      const roleSel = document.querySelector('#roleSel');
+      roleSel.innerHTML = '<option value="">All roles</option>' +
+        roles.map(r=>`<option value="${r}">${r}</option>`).join('');
+      roleSel.onchange = ()=>{ state.role = roleSel.value; render(); };
+    }
+
+    // boot
+    (async function init(){
+      renderSkeletons(8);                 // show skeletons instantly
+      try{
+        state.all = await loadData();     // fetch from Vercel API
+        buildFilters(state.all);
+        render();
+      }catch(e){
+        el('#cards').innerHTML = `<div class="empty">Failed to load. Refresh to try again.</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>
