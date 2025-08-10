@@ -66,8 +66,27 @@
     label{font-size:20px; color: #6d28d9; font-weight: 900;}
     input[type="search"], select{ background:#f6f7fe; color:var(--text); border:1px solid var(--border); border-radius:12px; padding:12px 12px; outline:none; font-size:12px }
 
-    .grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
-    @media (min-width: 1280px){ .grid{ grid-template-columns: repeat(4, 1fr); } }
+/* 1 col (very small), then 2 / 3 / 4 at breakpoints */
+.grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+}
+
+/* ≥600px: 2 per row */
+@media (min-width: 600px){
+  .grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ≥900px (tablets like iPad): 3 per row */
+@media (min-width: 900px){
+  .grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ≥1280px (laptops/desktop): 4 per row */
+@media (min-width: 1280px){
+  .grid{ grid-template-columns: repeat(4, 1fr); }
+}
 
     .card{
       min-height:260px; max-height:600px; position:relative; border-radius:16px; overflow:hidden;
