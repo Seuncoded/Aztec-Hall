@@ -201,11 +201,11 @@ const REQUIRED_ROLES = new Set([
   'The Paragon',
   'The Archivist',
 ]);
-    const SHEET_JSON_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhUaagfckU5EY06gOWlMtrOxN0YE9i5UR9cLCrdFD0CFmhI7hmMKaw9liDmiWCYXZRLaI4J-WNcinmeMqb0b-61ti2FFT2D4SKbKLhfgeOhstt1cmI4qncEVq9XUgJihONg6PPZUht3Nuy25j_ln4PbdaY5c8-sqW7X5S0fauIfcpxou13f-XjT_etQcY2UvZMxq5mRnRhSRJJFtfdjcXSYYFbKNXxbAPBOFCPy-ZcMJJu-0icqWOCsO_kwOnCfr8SXm5L5y2w4o__wIZdX6vAFmfDLPHDc6qM3c5N5&lib=MmoffGhvRFJSfNRmoE_Umb04A79LrDTNZ";
-  const API_URL =
+const SHEET_JSON_URL = "http://localhost:3000/api/contributors"; // for local testing
+const API_URL =
   (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-    ? SHEET_JSON_URL          // use Google Sheet when testing locally
-    : "/api/contributors";    // use Vercel proxy in production
+    ? SHEET_JSON_URL
+    : "/api/contributors";
 
     const el = sel => document.querySelector(sel);
     const state = { all: [], filtered: [], search:'', role:'' };
