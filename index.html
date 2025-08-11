@@ -88,6 +88,14 @@
   .grid{ grid-template-columns: repeat(4, 1fr); }
 }
 
+/* Target small screens only */
+@media (max-width: 640px) {
+  .role-select {
+    max-width: 130px;   /* Adjust as needed */
+    width: auto;        /* Fit content */
+    font-size: 14px;    /* Slightly smaller text */
+  }
+}
     .card{
       min-height:260px; max-height:600px; position:relative; border-radius:16px; overflow:hidden;
       border:1px solid var(--border); background:var(--panel); box-shadow:var(--shadow);
@@ -217,7 +225,7 @@ html{ -webkit-text-size-adjust:100%; }
       </div>
       <div class="field">
         <label for="roleSel">Filter by role</label>
-        <select id="roleSel"><option value="">All roles</option></select>
+        <select id="roleSel" class="role-select"><option value="">All roles</option></select>
       </div>
     </section>
 
