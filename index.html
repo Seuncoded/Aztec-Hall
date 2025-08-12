@@ -47,6 +47,51 @@
 
     .main{max-width:1280px; margin:0 auto; padding:24px 18px 70px}
 
+    /* Controls: search + role select */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 200px; /* desktop/tablet */
+  gap: 12px;
+  align-items: center;
+}
+
+/* Inputs */
+.controls input,
+.controls select {
+  height: 48px;
+  font-size: 15px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #e6e8f3;
+  background: #f3f4fb;
+  color: var(--ink);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Make select arrow look neat */
+.controls select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236f6ce8' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Mobile: make them equal and match card width */
+@media (max-width: 640px) {
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+  .controls input,
+  .controls select {
+    font-size: 14px;
+    padding: 0 10px;
+    max-width: 100%;
+  }
+}
     /* Compact controls */
     .controlsWrap{max-width:900px; margin:0 auto 18px}
     .controls{display:grid; grid-template-columns:1fr 220px; gap:12px; align-items:center}
@@ -125,25 +170,6 @@
       <div style="flex:1"></div>
     </div>
   </header>
-
-  <main class="main">
-    <!-- compact controls -->
-    <section class="controlsWrap">
-      <div class="controls">
-        <div class="field">
-          <label for="q">Search</label>
-          <input id="q" type="search" placeholder="Search name or handle…" />
-        </div>
-        <div class="field">
-          <label for="roleSel">Filter by role</label>
-          <select id="roleSel"><option value="">All roles</option></select>
-        </div>
-      </div>
-    </section>
-
-    <section id="cards" class="grid"></section>
-  </main>
-
   <!-- notice board at bottom -->
   <section class="notice">
     <div class="board">
@@ -162,6 +188,23 @@
       </ul>
     </div>
   </section>
+  <main class="main">
+    <!-- compact controls -->
+    <section class="controlsWrap">
+      <div class="controls">
+        <div class="field">
+          <label for="q">Search</label>
+          <input id="q" type="search" placeholder="Search name or handle…" />
+        </div>
+        <div class="field">
+          <label for="roleSel">Filter by role</label>
+          <select id="roleSel"><option value="">All roles</option></select>
+        </div>
+      </div>
+    </section>
+
+    <section id="cards" class="grid"></section>
+  </main>
 
   <a class="credit" href="https://x.com/seuncoded" target="_blank" rel="noopener">Built by @seuncoded</a>
 
