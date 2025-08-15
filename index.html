@@ -78,12 +78,12 @@
 
     /* ===== Ordered Masonry (grid + JS row spans) ===== */
     /* Pinterest-style columns (keeps source order) */
-.grid{
-  column-count: 1;
-  column-gap: 14px;
-  margin-top: 10px;
-}
-@media (min-width:640px){ .grid{ column-count: 2 } }
+/* Masonry columns (explicit, stable order) */
+#cards.cols{ display:flex; gap:14px; align-items:flex-start; }
+#cards.cols .col{ flex:1 1 0; display:flex; flex-direction:column; gap:14px; }
+
+/* responsive: choose how many columns in JS; this keeps cards pretty */
+@media (max-width:640px){ #cards.cols{ gap:12px; } }
 @media (min-width:900px){ .grid{ column-count: 3 } }
 @media (min-width:1280px){ .grid{ column-count: 4 } }
 
@@ -345,20 +345,54 @@
       if (prev && visibleRoles.includes(prev)) roleSel.value = prev; else state.role = '';
     }
 
-    function render(){
-      applyFiltersAndRank();
-      const box = el('#cards');
-      if(!state.filtered.length){
-        box.innerHTML = `<div class="empty">No matches. Try clearing filters.</div>`;
-        rebuildRoleFilterFromVisible();
-        return;
-      }
-      // Keep DOM order = sorted order
-      box.innerHTML = state.filtered.map(cardHtml).join('');
-      rebuildRoleFilterFromVisible();
+    function getColCount(){
+  const w = window.innerWidth;
+  if (w < 640) return 1;
+  if (w < 960) return 2;
+  if (w < 1280) return 3;
+  return 4;
+}
 
-      // Masonry: make grid respect actual heights (but keep order)
-    }
+function render(){
+  applyFiltersAndRank();           // you already sort by role count desc + tie by name
+  const wrap = document.getElementById('cards');
+
+  if (!state.filtered.length){
+    wrap.className = '';           // not using columns for the empty state
+    wrap.innerHTML = `<div class="empty">No matches. Try clearing filters.</div>`;
+    rebuildRoleFilterFromVisible();
+    return;
+  }
+
+  const cols = getColCount();
+  wrap.className = 'cols';         // <- use the new columns style
+  wrap.innerHTML = '';             // clear
+
+  // create N columns
+  const colEls = Array.from({length: cols}, () => {
+    const c = document.createElement('div');
+    c.className = 'col';
+    wrap.appendChild(c);
+    return c;
+  });
+
+  // place cards round‑robin to preserve left→right visual order
+  state.filtered.forEach((p, i) => {
+    const html = cardHtml(p);                      // your existing card renderer
+    const el = document.createElement('div');
+    el.innerHTML = html;
+    colEls[i % cols].appendChild(el.firstElementChild);
+  });
+
+  rebuildRoleFilterFromVisible();
+}
+
+// keep the layout responsive when resizing
+let _rt;
+window.addEventListener('resize', () => {
+  clearTimeout(_rt);
+  _rt = setTimeout(render, 120);
+});
 
     // click card -> open Twitter
     document.addEventListener('click', (e)=>{
